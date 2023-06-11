@@ -1,0 +1,27 @@
+[gd_scene load_steps=7 format=3 uid="uid://dtj4xjjqlmqmo"]
+
+[ext_resource type="Script" path="res://data/game_systems/state_manager.gd" id="1_ty6p6"]
+[ext_resource type="Script" path="res://data/game_systems/idle.gd" id="2_t3opl"]
+[ext_resource type="Script" path="res://data/game_systems/walk.gd" id="3_x0d8q"]
+[ext_resource type="Script" path="res://data/game_systems/jump.gd" id="4_rcnkd"]
+[ext_resource type="Script" path="res://data/game_systems/fall.gd" id="5_urjed"]
+[ext_resource type="Script" path="res://data/game_systems/swim.gd" id="6_xy08d"]
+
+[node name="StateManager" type="Node"]
+script = ExtResource("1_ty6p6")
+
+[node name="idle" type="Node" parent="."]
+script = ExtResource("2_t3opl")
+
+[node name="walk" type="Node" parent="."]
+script = ExtResource("3_x0d8q")
+
+[node name="jump" type="Node" parent="."]
+script = ExtResource("4_rcnkd")
+
+[node name="fall" type="Node" parent="."]
+script = ExtResource("5_urjed")
+
+[node name="swim" type="Node" parent="."]
+script = ExtResource("6_xy08d")
+DIVE_THRESHOLD = 0.3
