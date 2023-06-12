@@ -8,7 +8,7 @@ func input(event: InputEvent) -> int:
 		return State.Walk
 	return State.Null
 
-func physics_process(delta: float) -> int:	
+func physics_process(_delta: float) -> int:	
 	if not player.is_on_floor():
 		return State.Fall
 	return State.Null

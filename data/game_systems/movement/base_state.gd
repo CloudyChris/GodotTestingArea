@@ -63,5 +63,5 @@ func input(event: InputEvent) -> int:
 		player.springArm.set_length(clamp(player.springArm.spring_length+CAMERA_ZOOM_SENSITIVITY, 0, MAX_CAMERA_DISTANCE))
 	return State.Null
 
-func physics_process(delta: float) -> int:
+func physics_process(_delta: float) -> int:
 	return State.Null

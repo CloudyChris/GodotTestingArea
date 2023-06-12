@@ -12,7 +12,7 @@ func input(event: InputEvent) -> int:
 	super.input(event)
 	return State.Null
 
-func physics_process(delta: float) -> int:	
+func physics_process(_delta: float) -> int:	
 	var input_dir = Input.get_vector("move_left", "move_right", "move_forward", "move_backward")
 	var direction = (player.transform.basis * Vector3(input_dir.x, input_dir.y, input_dir.y)).normalized()
 	direction = direction.rotated(Vector3.UP, player.springArmPivot.rotation.y)
