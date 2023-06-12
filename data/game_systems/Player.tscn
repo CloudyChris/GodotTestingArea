@@ -1,7 +1,7 @@
 [gd_scene load_steps=6 format=3 uid="uid://ccxljq4722nd4"]
 
 [ext_resource type="Script" path="res://data/game_systems/Player.gd" id="1_bt42k"]
-[ext_resource type="PackedScene" uid="uid://dtj4xjjqlmqmo" path="res://data/game_systems/state_manager.tscn" id="2_6qpuk"]
+[ext_resource type="PackedScene" uid="uid://dtj4xjjqlmqmo" path="res://data/game_systems/movement/state_manager.tscn" id="2_6qpuk"]
 
 [sub_resource type="CapsuleMesh" id="CapsuleMesh_58mr4"]
 radius = 0.25
