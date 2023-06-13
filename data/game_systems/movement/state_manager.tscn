@@ -24,4 +24,4 @@ script = ExtResource("5_8lx2k")
 
 [node name="swim" type="Node" parent="."]
 script = ExtResource("6_7j76d")
-DIVE_THRESHOLD = 0.3
+DIVE_THRESHOLD = 0.35

@@ -12,8 +12,8 @@ enum ItemType {
 }
 
 @export var item_name : String = ""
-@export var item_type : Array[ItemType] = []
 @export var inventory_icon : CompressedTexture2D
+@export var item_type : Array[ItemType] = []
 
 @export var stackable : bool = false
 # max stack 0 means infinite
