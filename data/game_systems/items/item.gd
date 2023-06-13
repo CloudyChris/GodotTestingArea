@@ -11,6 +11,7 @@ enum ItemType {
 	Unknown # sometimes you're too dum dum to know what something is or what it's useful for
 }
 
+@export var item_id : int
 @export var item_name : String = ""
 @export var inventory_icon : CompressedTexture2D
 @export var item_type : Array[ItemType] = []

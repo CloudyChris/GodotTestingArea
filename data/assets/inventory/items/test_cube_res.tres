@@ -5,9 +5,9 @@
 
 [resource]
 script = ExtResource("3_dpgbq")
+item_id = 0
 item_name = "TestCube"
 inventory_icon = ExtResource("1_6g3rr")
 item_type = Array[int]([0])
-item_id = 0
 stackable = true
 max_stack = 5

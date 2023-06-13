@@ -1,4 +1,7 @@
-[gd_scene load_steps=4 format=3 uid="uid://iibyn0dmx7mn"]
+[gd_scene load_steps=6 format=3 uid="uid://iibyn0dmx7mn"]
+
+[ext_resource type="Script" path="res://data/assets/inventory/items/test_cube_prefab.gd" id="1_de1iv"]
+[ext_resource type="Resource" uid="uid://cubyy2ukcj8xl" path="res://data/assets/inventory/items/test_cube_res.tres" id="2_0fpah"]
 
 [sub_resource type="StandardMaterial3D" id="StandardMaterial3D_23ya4"]
 albedo_color = Color(1, 0, 0, 1)
@@ -10,6 +13,8 @@ size = Vector3(0.2, 0.2, 0.2)
 points = PackedVector3Array(0.1, 0.1, 0.1, 0.1, 0.1, -0.1, -0.1, 0.1, 0.1, 0.1, -0.1, 0.1, 0.1, -0.1, -0.1, -0.1, 0.1, -0.1, -0.1, -0.1, 0.1, -0.1, -0.1, -0.1)
 
 [node name="test_cube" type="RigidBody3D"]
+script = ExtResource("1_de1iv")
+item = ExtResource("2_0fpah")
 
 [node name="MeshInstance3D" type="MeshInstance3D" parent="."]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.1, 0)
