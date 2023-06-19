@@ -1,3 +1,4 @@
+@tool
 class_name Item
 extends Resource
 
@@ -11,10 +12,17 @@ enum ItemType {
 	Unknown # sometimes you're too dum dum to know what something is or what it's useful for
 }
 
-@export var item_id : int
+@export var gen_UUID : bool = false :
+	set(bFlag):
+		if bFlag and not item_id:
+			item_id = UUID.new()
+			gen_UUID = true
+		
+@export var item_id : UUID
 @export var item_name : String = ""
 @export var inventory_icon : CompressedTexture2D
 @export var item_type : Array[ItemType] = []
+@export var item_prefab : PackedScene
 
 @export var stackable : bool = false
 # max stack 0 means infinite

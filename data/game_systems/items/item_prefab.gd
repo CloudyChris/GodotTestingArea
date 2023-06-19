@@ -1,4 +1,4 @@
 class_name ItemPrefab
 extends Node
 
-@export var item : Item
+@export var item_id : UUID
