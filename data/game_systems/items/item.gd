@@ -16,14 +16,30 @@ enum ItemType {
 	set(bFlag):
 		if bFlag and not item_id:
 			item_id = UUID.new()
+			if item_prefab:
+				var tmp_item_prefab = item_prefab.instantiate()
+				tmp_item_prefab.item_id = item_id
+				var result = item_prefab.pack(tmp_item_prefab)
+				if result == OK:
+					var error = ResourceSaver.save(item_prefab, item_prefab.resource_path)
+					if error != OK:
+						push_error("An error occurred while saving the item prefab to disk.")
 			gen_UUID = true
 		
 @export var item_id : UUID
 @export var item_name : String = ""
 @export var inventory_icon : CompressedTexture2D
 @export var item_type : Array[ItemType] = []
-@export var item_prefab : PackedScene
-
+@export var item_prefab : PackedScene :
+	set(new_prefab):
+		item_prefab = new_prefab
+		var tmp_item_prefab = item_prefab.instantiate()
+		tmp_item_prefab.item_id = item_id
+		var result = item_prefab.pack(tmp_item_prefab)
+		if result == OK:
+			var error = ResourceSaver.save(item_prefab, item_prefab.resource_path)
+			if error != OK:
+				push_error("An error occurred while saving the item prefab to disk.")
 @export var stackable : bool = false
 # max stack 0 means infinite
 @export var max_stack : int = 0

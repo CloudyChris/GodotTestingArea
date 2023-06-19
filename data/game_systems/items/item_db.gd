@@ -24,8 +24,8 @@ extends Resource
 			if items[item_UUIDs[item]].item_id.as_string() != item:
 				item_UUIDs.erase(item)
 			
-func GetItemByString(aUUIDString : String):
+func GetItemByString(aUUIDString : String) -> Item:
 	return items[item_UUIDs[aUUIDString]]
 
-func GetItemByUUID(aUUID : UUID):
+func GetItemByUUID(aUUID : UUID) -> Item:
 	return GetItemByString(aUUID.as_string())

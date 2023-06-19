@@ -1,8 +1,17 @@
-[gd_scene load_steps=2 format=3 uid="uid://beir3g43xxg7g"]
+[gd_scene load_steps=5 format=3 uid="uid://beir3g43xxg7g"]
+
+[ext_resource type="Script" path="res://data/assets/item_database/items/test_item_prefab.gd" id="1_uqydl"]
+[ext_resource type="Script" path="res://data/game_systems/utils/uuid.gd" id="2_smabg"]
+
+[sub_resource type="Resource" id="Resource_w0frv"]
+script = ExtResource("2_smabg")
+myUUID_stringified = "0af90d41-1e96-4e65-ac5f-419a619a077f"
 
 [sub_resource type="BoxMesh" id="BoxMesh_n8x2r"]
 
 [node name="test_item_prefab" type="Node3D"]
+script = ExtResource("1_uqydl")
+item_id = SubResource("Resource_w0frv")
 
 [node name="MeshInstance3D" type="MeshInstance3D" parent="."]
 mesh = SubResource("BoxMesh_n8x2r")
