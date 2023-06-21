@@ -48,7 +48,7 @@ static func uuidbinrng(rng: RandomNumberGenerator):
 	]
 
 func _init() -> void:
-	myUUID = uuidbin()
+	myUUID = UUID.uuidbin()
 	myUUID_stringified = as_string()
 
 func as_string() -> String:

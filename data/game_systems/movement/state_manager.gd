@@ -17,9 +17,9 @@ func change_state(new_state: int) -> void:
 	current_state = states[new_state]
 	current_state.enter()
 
-func init(player: Player) -> void:
+func init(aPlayer: Player) -> void:
 	for child in get_children():
-		child.player = player
+		child.player = aPlayer
 	
 	#maybe move default state to an exported variable
 	change_state(BaseState.State.Idle)

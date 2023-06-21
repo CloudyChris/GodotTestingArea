@@ -1,11 +1,11 @@
 [gd_resource type="Resource" script_class="ItemDb" load_steps=3 format=3 uid="uid://c0oeb5jnxpff0"]
 
 [ext_resource type="Script" path="res://data/game_systems/items/item_db.gd" id="1_cpcy4"]
-[ext_resource type="Resource" uid="uid://drf3rplledno7" path="res://data/assets/item_database/items/test_item.tres" id="2_v05y7"]
+[ext_resource type="Resource" uid="uid://drf3rplledno7" path="res://data/assets/item_database/items/test_item.tres" id="1_nin6c"]
 
 [resource]
 script = ExtResource("1_cpcy4")
-items = Array[Resource("res://data/game_systems/items/item.gd")]([ExtResource("2_v05y7")])
+items = Array[Resource("res://data/game_systems/items/item.gd")]([ExtResource("1_nin6c")])
 item_UUIDs = {
 "0af90d41-1e96-4e65-ac5f-419a619a077f": 0
 }

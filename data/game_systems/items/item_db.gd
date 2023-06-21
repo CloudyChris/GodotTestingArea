@@ -11,7 +11,7 @@ extends Resource
 		items = new_items
 		for i in range(items.size()):
 			if items[i] and items[i].item_id:
-				item_UUIDs[items[i].item_id.as_string()] = i
+				item_UUIDs[items[i].item_id.myUUID_stringified] = i
 
 @export_category("DO NOT MODIFY")
 # format: UUID_string : items index
@@ -21,11 +21,11 @@ extends Resource
 	set(new_items):
 		item_UUIDs = new_items
 		for item in item_UUIDs.keys():
-			if items[item_UUIDs[item]].item_id.as_string() != item:
+			if items[item_UUIDs[item]].item_id.myUUID_stringified != item:
 				item_UUIDs.erase(item)
 			
 func GetItemByString(aUUIDString : String) -> Item:
 	return items[item_UUIDs[aUUIDString]]
 
 func GetItemByUUID(aUUID : UUID) -> Item:
-	return GetItemByString(aUUID.as_string())
+	return GetItemByString(aUUID.myUUID_stringified)

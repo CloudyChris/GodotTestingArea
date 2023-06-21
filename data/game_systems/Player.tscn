@@ -1,7 +1,8 @@
-[gd_scene load_steps=6 format=3 uid="uid://ccxljq4722nd4"]
+[gd_scene load_steps=8 format=3 uid="uid://ccxljq4722nd4"]
 
 [ext_resource type="Script" path="res://data/game_systems/Player.gd" id="1_bt42k"]
 [ext_resource type="PackedScene" uid="uid://dtj4xjjqlmqmo" path="res://data/game_systems/movement/state_manager.tscn" id="2_6qpuk"]
+[ext_resource type="Script" path="res://data/game_systems/player_interact_area.gd" id="3_240j2"]
 
 [sub_resource type="CapsuleMesh" id="CapsuleMesh_58mr4"]
 radius = 0.25
@@ -13,9 +14,12 @@ points = PackedVector3Array(0.0913025, 0.730849, 0.0227764, -0.242866, -0.551773
 [sub_resource type="SphereShape3D" id="SphereShape3D_fghep"]
 radius = 0.2
 
+[sub_resource type="SphereShape3D" id="SphereShape3D_0uu4t"]
+radius = 2.0
+
 [node name="Player" type="CharacterBody3D"]
 platform_floor_layers = 1
-platform_wall_layers = 2
+platform_wall_layers = 4
 script = ExtResource("1_bt42k")
 
 [node name="visuals" type="Node3D" parent="."]
@@ -46,5 +50,14 @@ transform = Transform3D(1, 0, 0, 0, 0.965926, 0.258819, 0, -0.258819, 0.965926, 
 
 [node name="swim_level" type="Node3D" parent="."]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1, 0)
+
+[node name="interact_area" type="Area3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.75, 0)
+collision_layer = 16
+collision_mask = 16
+script = ExtResource("3_240j2")
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="interact_area"]
+shape = SubResource("SphereShape3D_0uu4t")
 
 [editable path="StateManager"]
