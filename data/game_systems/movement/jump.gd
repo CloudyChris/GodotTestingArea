@@ -20,9 +20,6 @@ func physics_process(_delta: float) -> int:
 		player.velocity.x = move_toward(player.velocity.x, 0, SPEED)
 		player.velocity.z = move_toward(player.velocity.z, 0, SPEED)
 	
-	if player.velocity.y < 0:
-		return State.Fall
-	
 	if player.is_in_water():
 		return State.Swim
 	
@@ -31,4 +28,4 @@ func physics_process(_delta: float) -> int:
 			return State.Walk
 		else:
 			return State.Idle
-	return State.Null
+	return State.Fall

@@ -1,6 +1,6 @@
 [gd_scene load_steps=18 format=3 uid="uid://7m7tv0k3d27g"]
 
-[ext_resource type="PackedScene" uid="uid://ciggtuyg1dej1" path="res://data/assets/item_database/items/test_item_prefab.tscn" id="1_curcr"]
+[ext_resource type="PackedScene" uid="uid://cjroblte30awu" path="res://data/assets/item_database/items/test_item_prefab.tscn" id="1_curcr"]
 [ext_resource type="PackedScene" uid="uid://ccxljq4722nd4" path="res://data/game_systems/Player.tscn" id="1_glpvp"]
 [ext_resource type="Script" path="res://data/game_systems/utils/uuid.gd" id="2_1kr30"]
 

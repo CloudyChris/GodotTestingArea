@@ -1,4 +1,4 @@
-[gd_scene load_steps=8 format=3]
+[gd_scene load_steps=7 format=3 uid="uid://cjroblte30awu"]
 
 [ext_resource type="Script" path="res://data/assets/item_database/items/test_item_prefab.gd" id="1_uqydl"]
 [ext_resource type="Script" path="res://data/game_systems/utils/uuid.gd" id="2_smabg"]
@@ -14,14 +14,6 @@ size = Vector3(0.2, 0.2, 0.2)
 transparency = 1
 albedo_color = Color(1, 0, 0, 1)
 
-[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_rw36l"]
-render_priority = -1
-next_pass = SubResource("StandardMaterial3D_ln242")
-transparency = 1
-no_depth_test = true
-shading_mode = 0
-albedo_color = Color(0.533333, 1, 1, 1)
-
 [sub_resource type="ConvexPolygonShape3D" id="ConvexPolygonShape3D_lk0vi"]
 points = PackedVector3Array(0.1, 0.1, 0.1, 0.1, 0.1, -0.1, -0.1, 0.1, 0.1, 0.1, -0.1, 0.1, 0.1, -0.1, -0.1, -0.1, 0.1, -0.1, -0.1, -0.1, 0.1, -0.1, -0.1, -0.1)
 
@@ -34,7 +26,7 @@ item_id = SubResource("Resource_w0frv")
 [node name="MeshInstance3D" type="MeshInstance3D" parent="."]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.1, 0)
 mesh = SubResource("BoxMesh_n8x2r")
-surface_material_override/0 = SubResource("StandardMaterial3D_rw36l")
+surface_material_override/0 = SubResource("StandardMaterial3D_ln242")
 
 [node name="CollisionShape3D" type="CollisionShape3D" parent="."]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.1, 0)
