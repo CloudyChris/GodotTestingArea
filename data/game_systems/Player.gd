@@ -3,14 +3,21 @@ extends CharacterBody3D
 
 const EntityType : int = 1
 
+
+@onready var visuals = $visuals
+@onready var collider = $collider
 @onready var springArmPivot = $SpringArmPivot
-@onready var springArm = $SpringArmPivot/SpringArm
+@onready var springArm = $SpringArmPivot/Roller/SpringArm
+@onready var roller = $SpringArmPivot/Roller
+@onready var camera = $SpringArmPivot/Roller/SpringArm/Camera3D
 @onready var state_manager = $StateManager
 @onready var swim_level = $swim_level
 @onready var interact_area = $interact_area
 
 var shouldRotateCamera : bool = false
 var captureMode : bool = false
+var current_roller_divergence : Vector2 = Vector2.ZERO
+var current_mcd : float
 
 func _ready():
 	Input.set_mouse_mode(Input.MOUSE_MODE_VISIBLE)

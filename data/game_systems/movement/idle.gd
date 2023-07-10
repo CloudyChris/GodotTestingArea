@@ -9,6 +9,7 @@ func input(event: InputEvent) -> int:
 	return State.Null
 
 func physics_process(_delta: float) -> int:	
+	super(_delta)
 	if not player.is_on_floor():
 		return State.Fall
 	return State.Null

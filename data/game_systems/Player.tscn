@@ -1,18 +1,31 @@
-[gd_scene load_steps=8 format=3 uid="uid://ccxljq4722nd4"]
+[gd_scene load_steps=12 format=3 uid="uid://ccxljq4722nd4"]
 
 [ext_resource type="Script" path="res://data/game_systems/Player.gd" id="1_bt42k"]
 [ext_resource type="PackedScene" uid="uid://dtj4xjjqlmqmo" path="res://data/game_systems/movement/state_manager.tscn" id="2_6qpuk"]
 [ext_resource type="Script" path="res://data/game_systems/player_interact_area.gd" id="3_240j2"]
+[ext_resource type="PackedScene" uid="uid://cduuq8koek2go" path="res://data/game_systems/UI/in_game_ui.tscn" id="4_pngph"]
+
+[sub_resource type="Gradient" id="Gradient_2nc8r"]
+interpolation_mode = 1
+offsets = PackedFloat32Array(0, 0.0813008, 0.910569)
+colors = PackedColorArray(0, 0.470588, 0.831373, 1, 1, 1, 1, 1, 0, 0.470588, 0.831373, 1)
+
+[sub_resource type="GradientTexture1D" id="GradientTexture1D_sywfl"]
+gradient = SubResource("Gradient_2nc8r")
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_jrpxw"]
+albedo_texture = SubResource("GradientTexture1D_sywfl")
 
 [sub_resource type="CapsuleMesh" id="CapsuleMesh_58mr4"]
 radius = 0.25
 height = 1.5
 
-[sub_resource type="ConvexPolygonShape3D" id="ConvexPolygonShape3D_h0imh"]
-points = PackedVector3Array(0.0913025, 0.730849, 0.0227764, -0.242866, -0.551773, -0.0220139, -0.242863, -0.551768, 0.0220136, 0.242866, -0.551773, 0.0220139, -0.0220139, 0.551773, -0.242866, -0.109491, 0.547457, 0.21903, 0.0220139, -0.551773, -0.242866, 0.0651671, -0.521643, 0.239133, 0.242863, 0.551768, 0.0220136, -0.21903, 0.547457, -0.109491, 0.194425, 0.539915, -0.151157, 0.151157, 0.539915, 0.194425, -0.0893873, -0.648421, 0.178823, -0.151158, -0.539917, -0.194426, -0.0227764, -0.730849, -0.0913025, -0.219034, 0.547466, 0.109493, 0.194426, -0.539917, -0.151158, -0.151157, -0.539915, 0.194425, 0.194425, -0.539915, 0.151157, -0.0913025, 0.730849, -0.0227764, 0.136134, -0.703465, 0.0453127, 0.109491, 0.547457, -0.21903, -0.0220136, 0.551768, 0.242863, -0.151157, 0.539915, -0.194425, -0.0651686, -0.521655, 0.239139, 0.234699, 0.469207, -0.0852784, -0.0453128, 0.703466, 0.136134, -0.242866, 0.551773, 0.0220139, 0.0453128, 0.703466, -0.136134, 0.234699, 0.469207, 0.0852784, -0.0852784, -0.469207, -0.234699, -0.214141, -0.492446, -0.128448)
+[sub_resource type="CapsuleShape3D" id="CapsuleShape3D_1ei3j"]
+radius = 0.25
+height = 1.5
 
 [sub_resource type="SphereShape3D" id="SphereShape3D_fghep"]
-radius = 0.2
+radius = 0.3
 
 [sub_resource type="SphereShape3D" id="SphereShape3D_0uu4t"]
 radius = 2.0
@@ -22,27 +35,34 @@ platform_floor_layers = 1
 platform_wall_layers = 4
 script = ExtResource("1_bt42k")
 
+[node name="UI" parent="." instance=ExtResource("4_pngph")]
+mouse_filter = 1
+
 [node name="visuals" type="Node3D" parent="."]
 
 [node name="MeshInstance3D" type="MeshInstance3D" parent="visuals"]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.75, 0)
+material_override = SubResource("StandardMaterial3D_jrpxw")
 mesh = SubResource("CapsuleMesh_58mr4")
 skeleton = NodePath("../..")
 
 [node name="collider" type="CollisionShape3D" parent="."]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.75, 0)
-shape = SubResource("ConvexPolygonShape3D_h0imh")
+shape = SubResource("CapsuleShape3D_1ei3j")
 
 [node name="SpringArmPivot" type="Node3D" parent="."]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1.2, 0)
 
-[node name="SpringArm" type="SpringArm3D" parent="SpringArmPivot"]
+[node name="Roller" type="Node3D" parent="SpringArmPivot"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.6, 0, 0)
+
+[node name="SpringArm" type="SpringArm3D" parent="SpringArmPivot/Roller"]
 shape = SubResource("SphereShape3D_fghep")
 spring_length = 3.0
 margin = 0.2
 
-[node name="Camera3D" type="Camera3D" parent="SpringArmPivot/SpringArm"]
-transform = Transform3D(1, 0, 0, 0, 0.965926, 0.258819, 0, -0.258819, 0.965926, 0, 3.30881, 10)
+[node name="Camera3D" type="Camera3D" parent="SpringArmPivot/Roller/SpringArm"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 3.30881, 10)
 
 [node name="animations" type="AnimationPlayer" parent="."]
 

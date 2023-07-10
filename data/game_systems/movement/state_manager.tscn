@@ -12,6 +12,7 @@ script = ExtResource("1_iayv2")
 
 [node name="idle" type="Node" parent="."]
 script = ExtResource("2_tmjlv")
+LATERAL_CAMERA_OFFSHOOT = null
 
 [node name="walk" type="Node" parent="."]
 script = ExtResource("3_oxwsh")
