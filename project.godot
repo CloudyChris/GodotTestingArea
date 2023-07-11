@@ -14,6 +14,10 @@ config/name="Compass Heading X"
 config/features=PackedStringArray("4.1", "Forward Plus")
 config/icon="res://icon.svg"
 
+[autoload]
+
+UIManager="*res://data/game_systems/UI/UIManager.gd"
+
 [editor_plugins]
 
 enabled=PackedStringArray("res://addons/SimpleTODO/plugin.cfg", "res://addons/Todo_Manager/plugin.cfg")
