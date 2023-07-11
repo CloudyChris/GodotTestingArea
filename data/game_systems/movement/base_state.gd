@@ -14,7 +14,7 @@ enum State {
 
 @export var CAMERA_SENSITIVITY : float = 0.005
 @export var MAX_CAMERA_DISTANCE : float = 5.0
-@export var CAMERA_ZOOM_SENSITIVITY : float = 1
+@export var CAMERA_ZOOM_SENSITIVITY : float = 1.5
 
 const MAX_CAMERA_ANGLE : float = -PI/2
 const MIN_CAMERA_ANGLE : float = PI/2
@@ -60,13 +60,14 @@ func input(event: InputEvent) -> int:
 		player.springArmPivot.rotate_y(-event.relative.x * CAMERA_SENSITIVITY)
 		player.visuals.rotation.y = player.springArmPivot.rotation.y
 		player.collider.rotation.y = player.springArmPivot.rotation.y
+		player.interact_area.rotation.y = player.springArmPivot.rotation.y
 		player.springArm.rotate_x(-event.relative.y * CAMERA_SENSITIVITY)
 		player.springArm.rotation.x = clamp(player.springArm.rotation.x, MAX_CAMERA_ANGLE, MIN_CAMERA_ANGLE)
 	
 	if Input.is_action_just_released("zoom_in"):
-		player.current_mcd = clamp(player.springArm.spring_length-CAMERA_ZOOM_SENSITIVITY, 0, MAX_CAMERA_DISTANCE)
+		player.current_mcd = floor(clamp(player.springArm.spring_length-CAMERA_ZOOM_SENSITIVITY, 0, MAX_CAMERA_DISTANCE))
 	if Input.is_action_just_released("zoom_out"):
-		player.current_mcd = clamp(player.springArm.spring_length+CAMERA_ZOOM_SENSITIVITY, 0, MAX_CAMERA_DISTANCE)
+		player.current_mcd = floor(clamp(player.springArm.spring_length+CAMERA_ZOOM_SENSITIVITY, 0, MAX_CAMERA_DISTANCE))
 	return State.Null
 
 func physics_process(_delta: float) -> int:

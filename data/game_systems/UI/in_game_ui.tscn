@@ -7,7 +7,7 @@ script/source = "extends Control
 
 # Called when the node enters the scene tree for the first time.
 func _ready():
-	# register with the UI manager 
+	# register with the UI manager
 	pass # Replace with function body.
 
 # Called every frame. 'delta' is the elapsed time since the previous frame.
