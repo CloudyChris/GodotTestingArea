@@ -6,3 +6,6 @@ extends PhysicsBody3D
 func pick_up() -> UUID:
 	queue_free()
 	return item_id
+
+func interact():
+	pick_up()

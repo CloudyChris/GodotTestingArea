@@ -1,9 +1,9 @@
 extends ItemPrefab
 
-@onready var collider = $collider
+@onready var interact_component = $InteractionComponent
 
 func _ready():
 	pass
 
-func _process(delta):
+func _process(_delta):
 	pass
