@@ -3,9 +3,8 @@ extends PhysicsBody3D
 
 @export var item_id : UUID
 
-func pick_up() -> UUID:
+func pick_up() -> void:
 	queue_free()
-	return item_id
 
 func interact():
 	pick_up()

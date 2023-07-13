@@ -1,6 +1,7 @@
-[gd_scene load_steps=3 format=3 uid="uid://cduuq8koek2go"]
+[gd_scene load_steps=4 format=3 uid="uid://cduuq8koek2go"]
 
 [ext_resource type="Texture2D" uid="uid://cmg56r737btg4" path="res://data/assets/UI/crosshair.png" id="1_pdhpv"]
+[ext_resource type="Script" path="res://data/game_systems/UI/reticle.gd" id="2_g0klo"]
 
 [sub_resource type="GDScript" id="GDScript_hf1im"]
 script/source = "extends Control
@@ -35,3 +36,4 @@ metadata/_edit_use_anchors_ = true
 [node name="reticle" type="TextureRect" parent="reticle_cc"]
 layout_mode = 2
 texture = ExtResource("1_pdhpv")
+script = ExtResource("2_g0klo")
