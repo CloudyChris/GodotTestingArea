@@ -1,6 +1,14 @@
-[gd_scene load_steps=2 format=3 uid="uid://2s02o4f77oj1"]
+[gd_scene load_steps=3 format=3 uid="uid://2s02o4f77oj1"]
 
 [ext_resource type="Script" path="res://data/game_systems/UI/interaction_component.gd" id="1_16sm6"]
 
-[node name="InteractionComponent" type="Node3D"]
+[sub_resource type="BoxShape3D" id="BoxShape3D_aq0wa"]
+size = Vector3(0.1, 0.1, 0.1)
+
+[node name="InteractionComponent" type="StaticBody3D"]
+collision_layer = 4096
+collision_mask = 4096
 script = ExtResource("1_16sm6")
+
+[node name="collider" type="CollisionShape3D" parent="."]
+shape = SubResource("BoxShape3D_aq0wa")

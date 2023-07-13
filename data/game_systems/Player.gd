@@ -1,9 +1,6 @@
 class_name Player
 extends CharacterBody3D
 
-const EntityType : int = 1
-
-
 @onready var visuals = $visuals
 @onready var collider = $collider
 @onready var springArmPivot = $SpringArmPivot
@@ -20,9 +17,9 @@ var current_roller_divergence : Vector2 = Vector2.ZERO
 var current_mcd : float
 
 func _ready():
+	UIManager.register_player(self)
 	Input.set_mouse_mode(Input.MOUSE_MODE_VISIBLE)
 	state_manager.init(self)
-	interact_area.init(self)
 
 func _unhandled_input(event: InputEvent) -> void:
 	state_manager.input(event)

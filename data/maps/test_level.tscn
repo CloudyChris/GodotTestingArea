@@ -311,7 +311,7 @@ transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 15, 2.5, 0)
 shape = SubResource("ConvexPolygonShape3D_ft4j5")
 
 [node name="test_item_prefab" parent="map" instance=ExtResource("1_curcr")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 15, 0, 2)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 15, 0.1, 2)
 item_id = SubResource("Resource_w0frv")
 
 [node name="Player" parent="." instance=ExtResource("1_glpvp")]

@@ -1,8 +1,7 @@
-[gd_scene load_steps=12 format=3 uid="uid://ccxljq4722nd4"]
+[gd_scene load_steps=11 format=3 uid="uid://ccxljq4722nd4"]
 
 [ext_resource type="Script" path="res://data/game_systems/Player.gd" id="1_bt42k"]
 [ext_resource type="PackedScene" uid="uid://dtj4xjjqlmqmo" path="res://data/game_systems/movement/state_manager.tscn" id="2_6qpuk"]
-[ext_resource type="Script" path="res://data/game_systems/player_interact_area.gd" id="3_240j2"]
 [ext_resource type="PackedScene" uid="uid://cduuq8koek2go" path="res://data/game_systems/UI/in_game_ui.tscn" id="4_pngph"]
 
 [sub_resource type="Gradient" id="Gradient_2nc8r"]
@@ -27,8 +26,8 @@ height = 1.5
 [sub_resource type="SphereShape3D" id="SphereShape3D_fghep"]
 radius = 0.3
 
-[sub_resource type="BoxShape3D" id="BoxShape3D_tyyed"]
-size = Vector3(2.5, 2, 2)
+[sub_resource type="SphereShape3D" id="SphereShape3D_wsp3x"]
+radius = 2.0
 
 [node name="Player" type="CharacterBody3D"]
 platform_floor_layers = 1
@@ -64,6 +63,10 @@ margin = 0.2
 [node name="Camera3D" type="Camera3D" parent="SpringArmPivot/Roller/SpringArm"]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 3.30881, 10)
 
+[node name="RayCast3D" type="RayCast3D" parent="SpringArmPivot/Roller/SpringArm/Camera3D"]
+target_position = Vector3(0, 0, -20)
+collision_mask = 16
+
 [node name="animations" type="AnimationPlayer" parent="."]
 
 [node name="StateManager" parent="." instance=ExtResource("2_6qpuk")]
@@ -73,12 +76,10 @@ transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1, 0)
 
 [node name="interact_area" type="Area3D" parent="."]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.75, 0)
-collision_layer = 16
-collision_mask = 16
-script = ExtResource("3_240j2")
+collision_layer = 4096
+collision_mask = 4096
 
-[node name="CollisionShape3D" type="CollisionShape3D" parent="interact_area"]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, -0.8)
-shape = SubResource("BoxShape3D_tyyed")
+[node name="collider" type="CollisionShape3D" parent="interact_area"]
+shape = SubResource("SphereShape3D_wsp3x")
 
 [editable path="StateManager"]
