@@ -1,8 +1,9 @@
-[gd_scene load_steps=18 format=3 uid="uid://7m7tv0k3d27g"]
+[gd_scene load_steps=21 format=3 uid="uid://7m7tv0k3d27g"]
 
-[ext_resource type="PackedScene" uid="uid://cjroblte30awu" path="res://data/assets/item_database/items/test_item_prefab.tscn" id="1_curcr"]
+[ext_resource type="PackedScene" uid="uid://dnmpkknaw7wvx" path="res://data/assets/item_database/items/test.pfitem.tscn" id="1_dku2d"]
 [ext_resource type="PackedScene" uid="uid://ccxljq4722nd4" path="res://data/game_systems/Player.tscn" id="1_glpvp"]
-[ext_resource type="Script" path="res://data/game_systems/utils/uuid.gd" id="2_1kr30"]
+[ext_resource type="Script" path="res://data/game_systems/utils/uuid.gd" id="2_elyfw"]
+[ext_resource type="Script" path="res://data/game_systems/items/item.gd" id="3_0v2u6"]
 
 [sub_resource type="StandardMaterial3D" id="StandardMaterial3D_0emcc"]
 albedo_color = Color(0.309804, 0.658824, 0, 1)
@@ -35,9 +36,23 @@ size = Vector3(2, 5, 2)
 [sub_resource type="ConvexPolygonShape3D" id="ConvexPolygonShape3D_ft4j5"]
 points = PackedVector3Array(-1, -2.5, -1, -1, -2.5, 1, -1, 2.5, -1, 1, -2.5, -1, 1, -2.5, 1, -1, 2.5, 1, 1, 2.5, -1, 1, 2.5, 1)
 
-[sub_resource type="Resource" id="Resource_w0frv"]
-script = ExtResource("2_1kr30")
-myUUID_stringified = "0af90d41-1e96-4e65-ac5f-419a619a077f"
+[sub_resource type="CompressedTexture2D" id="CompressedTexture2D_4n1t4"]
+load_path = "res://.godot/imported/test.png-dde431d70706e994304ae94634f2a17d.ctex"
+
+[sub_resource type="Resource" id="Resource_kgf16"]
+script = ExtResource("2_elyfw")
+myUUID_stringified = "7679e08b-58a6-4eeb-9a48-95bf6fc967a4"
+
+[sub_resource type="Resource" id="Resource_vejli"]
+resource_local_to_scene = true
+script = ExtResource("3_0v2u6")
+gen_UUID = true
+item_id = SubResource("Resource_kgf16")
+item_name = "Test+1"
+inventory_icon = SubResource("CompressedTexture2D_4n1t4")
+item_type = Array[int]([6])
+stackable = true
+max_stack = 5
 
 [sub_resource type="ProceduralSkyMaterial" id="ProceduralSkyMaterial_haern"]
 
@@ -310,9 +325,9 @@ mesh = SubResource("BoxMesh_xelk3")
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 15, 2.5, 0)
 shape = SubResource("ConvexPolygonShape3D_ft4j5")
 
-[node name="test_item_prefab" parent="map" instance=ExtResource("1_curcr")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 15, 0.1, 2)
-item_id = SubResource("Resource_w0frv")
+[node name="test_item_prefab" parent="map" instance=ExtResource("1_dku2d")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 15, 0.25, 3)
+item = SubResource("Resource_vejli")
 
 [node name="Player" parent="." instance=ExtResource("1_glpvp")]
 transform = Transform3D(-1, 0, -8.74228e-08, 0, 1, 0, 8.74228e-08, 0, -1, 0, 0, 0)

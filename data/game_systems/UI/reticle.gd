@@ -7,7 +7,7 @@ func _ready():
 	texture_normal = load("res://data/assets/UI/crosshair.png")
 	texture_can_interact = load("res://data/assets/UI/crosshair_interact.png")
 
-func _process(delta):
+func _process(_delta):
 	if UIManager.can_interact:
 		texture = texture_can_interact
 	else:

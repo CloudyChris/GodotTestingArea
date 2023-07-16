@@ -2,30 +2,22 @@
 class_name ItemDb
 extends Resource
 
-# no suitable solution to guard against duplicates
-# maybe we could do that in C++
-# the issue is the difference in the items array is too complex to check for every time
-# may attempt an in-engine solution saving a copy of items and checking for uuids
-@export var items : Array[Item] :
+@export var items_create_update_queue : Array[PackedItem] :
 	set(new_items):
-		items = new_items
-		for i in range(items.size()):
-			if items[i] and items[i].item_id:
-				item_UUIDs[items[i].item_id.myUUID_stringified] = i
+		for new_item in new_items:
+			if new_item and new_item.item_id:
+				items[new_item.item_id.myUUID_stringified] = new_item
+		items_create_update_queue = []
 
 @export_category("DO NOT MODIFY")
-# format: UUID_string : items index
-# exported for debugging reasons
-# keys that point to nothing get deleted
-@export var item_UUIDs : Dictionary :
-	set(new_items):
-		item_UUIDs = new_items
-		for item in item_UUIDs.keys():
-			if items[item_UUIDs[item]].item_id.myUUID_stringified != item:
-				item_UUIDs.erase(item)
+# format: UUID_string : item
+@export var items : Dictionary
 			
-func GetItemByString(aUUIDString : String) -> Item:
-	return items[item_UUIDs[aUUIDString]]
+func GetPackedItemByString(aUUIDString : String) -> Item:
+	return items[aUUIDString]
 
-func GetItemByUUID(aUUID : UUID) -> Item:
-	return GetItemByString(aUUID.myUUID_stringified)
+func GetPackedItemByUUID(aUUID : UUID) -> Item:
+	return GetPackedItemByString(aUUID.myUUID_stringified)
+
+func _init():
+	pass

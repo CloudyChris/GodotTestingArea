@@ -1,0 +1,45 @@
+[gd_scene load_steps=10 format=3 uid="uid://dnmpkknaw7wvx"]
+
+[ext_resource type="Script" path="res://data/assets/item_database/items/test.pfitem.gd" id="1_hjvti"]
+[ext_resource type="PackedScene" uid="uid://2s02o4f77oj1" path="res://data/game_systems/UI/interaction_component.tscn" id="1_v71xk"]
+[ext_resource type="Script" path="res://data/game_systems/utils/uuid.gd" id="2_1kx1a"]
+[ext_resource type="Script" path="res://data/game_systems/items/item.gd" id="3_57p5e"]
+
+[sub_resource type="CompressedTexture2D" id="CompressedTexture2D_4n1t4"]
+load_path = "res://.godot/imported/test.png-dde431d70706e994304ae94634f2a17d.ctex"
+
+[sub_resource type="Resource" id="Resource_kgf16"]
+script = ExtResource("2_1kx1a")
+myUUID_stringified = "7679e08b-58a6-4eeb-9a48-95bf6fc967a4"
+
+[sub_resource type="Resource" id="Resource_b6ors"]
+resource_local_to_scene = true
+script = ExtResource("3_57p5e")
+gen_UUID = true
+item_id = SubResource("Resource_kgf16")
+item_name = "Test+1"
+inventory_icon = SubResource("CompressedTexture2D_4n1t4")
+item_type = Array[int]([6])
+stackable = true
+max_stack = 5
+
+[sub_resource type="ConvexPolygonShape3D" id="ConvexPolygonShape3D_rghf8"]
+points = PackedVector3Array(0.25, 0.25, 0.25, 0.25, 0.25, -0.25, -0.25, 0.25, 0.25, 0.25, -0.25, 0.25, 0.25, -0.25, -0.25, -0.25, 0.25, -0.25, -0.25, -0.25, 0.25, -0.25, -0.25, -0.25)
+
+[sub_resource type="BoxMesh" id="BoxMesh_jewso"]
+size = Vector3(0.5, 0.5, 0.5)
+
+[node name="test_item_prefab" type="StaticBody3D"]
+script = ExtResource("1_hjvti")
+item = SubResource("Resource_b6ors")
+
+[node name="collider" type="CollisionShape3D" parent="."]
+shape = SubResource("ConvexPolygonShape3D_rghf8")
+
+[node name="visuals" type="Node3D" parent="."]
+
+[node name="MeshInstance3D" type="MeshInstance3D" parent="visuals"]
+mesh = SubResource("BoxMesh_jewso")
+skeleton = NodePath("../..")
+
+[node name="InteractionComponent" parent="." instance=ExtResource("1_v71xk")]

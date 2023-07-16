@@ -17,6 +17,7 @@ config/icon="res://icon.svg"
 [autoload]
 
 UIManager="*res://data/game_systems/UI/UIManager.gd"
+InventoryManager="*res://data/game_systems/items/InventoryManager.gd"
 
 [editor_plugins]
 
