@@ -3,10 +3,13 @@ extends Node
 @onready var states = {
 	BaseState.State.Idle: $idle,
 	BaseState.State.Walk: $walk,
+	BaseState.State.Run: $run,
 	BaseState.State.Jump: $jump,
 	BaseState.State.Fall: $fall,
 	BaseState.State.Swim: $swim
 }
+
+var is_walking : bool = false
 
 var current_state : BaseState
 
@@ -25,6 +28,8 @@ func init(aPlayer: Player) -> void:
 	change_state(BaseState.State.Idle)
 
 func input(event: InputEvent) -> void:
+	if Input.is_action_just_pressed("toggle_walk"):
+		is_walking = not is_walking
 	var new_state = current_state.input(event)
 	if new_state != BaseState.State.Null:
 		change_state(new_state)

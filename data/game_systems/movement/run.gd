@@ -1,6 +1,6 @@
 extends BaseState
 
-@export var SPEED : float = 2.0
+@export var SPEED : float = 5.0
 @export var TERMINAL_VELOCITY : float = 20.0
 @export var GRAVITY : float = 9.8
 

@@ -1,8 +1,9 @@
-[gd_scene load_steps=7 format=3 uid="uid://dtj4xjjqlmqmo"]
+[gd_scene load_steps=8 format=3 uid="uid://dtj4xjjqlmqmo"]
 
 [ext_resource type="Script" path="res://data/game_systems/movement/state_manager.gd" id="1_iayv2"]
 [ext_resource type="Script" path="res://data/game_systems/movement/idle.gd" id="2_tmjlv"]
 [ext_resource type="Script" path="res://data/game_systems/movement/walk.gd" id="3_oxwsh"]
+[ext_resource type="Script" path="res://data/game_systems/movement/run.gd" id="4_f3f3t"]
 [ext_resource type="Script" path="res://data/game_systems/movement/jump.gd" id="4_iic26"]
 [ext_resource type="Script" path="res://data/game_systems/movement/fall.gd" id="5_8lx2k"]
 [ext_resource type="Script" path="res://data/game_systems/movement/swim.gd" id="6_7j76d"]
@@ -15,6 +16,9 @@ script = ExtResource("2_tmjlv")
 
 [node name="walk" type="Node" parent="."]
 script = ExtResource("3_oxwsh")
+
+[node name="run" type="Node" parent="."]
+script = ExtResource("4_f3f3t")
 
 [node name="jump" type="Node" parent="."]
 script = ExtResource("4_iic26")

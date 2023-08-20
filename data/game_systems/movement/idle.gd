@@ -5,7 +5,10 @@ func input(event: InputEvent) -> int:
 	if Input.is_action_just_pressed("jump"):
 		return State.Jump
 	if Input.get_vector("move_left", "move_right", "move_forward", "move_backward"):
-		return State.Walk
+		if get_parent().is_walking:
+			return State.Walk
+		else:
+			return State.Run
 	return State.Null
 
 func physics_process(_delta: float) -> int:	

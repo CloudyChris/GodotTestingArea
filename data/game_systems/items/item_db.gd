@@ -2,15 +2,14 @@
 class_name ItemDb
 extends Resource
 
-@export var items_create_update_queue : Array[PackedItem] :
-	set(new_items):
-		for new_item in new_items:
-			if new_item and new_item.item_id:
-				items[new_item.item_id.myUUID_stringified] = new_item
-		items_create_update_queue = []
+# do not modify this array by hand
+@export var items_add_slot : PackedItem :
+	set(new_item):
+		if new_item and new_item.item_id:
+			items[new_item.item_id.myUUID_stringified] = new_item
+			print("Item \"" + new_item.item.item_name + "\" with UUID \"" + new_item.item_id.myUUID_stringified + "\" was successfully added to Item Database")
+		items_add_slot = null
 
-@export_category("DO NOT MODIFY")
-# format: UUID_string : item
 @export var items : Dictionary
 			
 func GetPackedItemByString(aUUIDString : String) -> Item:

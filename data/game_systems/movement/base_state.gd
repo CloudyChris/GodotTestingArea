@@ -5,6 +5,7 @@ enum State {
 	Null,
 	Idle,
 	Walk,
+	Run,
 	Jump,
 	Fall,
 	Swim

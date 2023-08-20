@@ -26,7 +26,10 @@ func physics_process(delta: float) -> int:
 	
 	if player.is_on_floor():
 		if direction:
-			return State.Walk
+			if get_parent().is_walking:
+				return State.Walk
+			else:
+				return State.Run
 		else:
 			return State.Idle
 	return State.Fall

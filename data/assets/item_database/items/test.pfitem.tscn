@@ -5,20 +5,20 @@
 [ext_resource type="Script" path="res://data/game_systems/utils/uuid.gd" id="2_1kx1a"]
 [ext_resource type="Script" path="res://data/game_systems/items/item.gd" id="3_57p5e"]
 
-[sub_resource type="CompressedTexture2D" id="CompressedTexture2D_4n1t4"]
+[sub_resource type="CompressedTexture2D" id="CompressedTexture2D_eegho"]
 load_path = "res://.godot/imported/test.png-dde431d70706e994304ae94634f2a17d.ctex"
 
-[sub_resource type="Resource" id="Resource_kgf16"]
+[sub_resource type="Resource" id="Resource_ujfwn"]
 script = ExtResource("2_1kx1a")
 myUUID_stringified = "7679e08b-58a6-4eeb-9a48-95bf6fc967a4"
 
-[sub_resource type="Resource" id="Resource_b6ors"]
+[sub_resource type="Resource" id="Resource_rqxjb"]
 resource_local_to_scene = true
 script = ExtResource("3_57p5e")
 gen_UUID = true
-item_id = SubResource("Resource_kgf16")
-item_name = "Test+1"
-inventory_icon = SubResource("CompressedTexture2D_4n1t4")
+item_id = SubResource("Resource_ujfwn")
+item_name = "Test"
+inventory_icon = SubResource("CompressedTexture2D_eegho")
 item_type = Array[int]([6])
 stackable = true
 max_stack = 5
@@ -34,7 +34,7 @@ size = Vector3(0.5, 0.5, 0.5)
 
 [node name="test_item_prefab" type="StaticBody3D"]
 script = ExtResource("1_hjvti")
-item = SubResource("Resource_b6ors")
+item = SubResource("Resource_rqxjb")
 
 [node name="collider" type="CollisionShape3D" parent="."]
 shape = SubResource("ConvexPolygonShape3D_rghf8")
