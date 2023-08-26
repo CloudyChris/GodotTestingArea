@@ -16,7 +16,7 @@ gradient = SubResource("Gradient_2nc8r")
 [sub_resource type="StandardMaterial3D" id="StandardMaterial3D_jrpxw"]
 albedo_texture = SubResource("GradientTexture1D_sywfl")
 
-[sub_resource type="CapsuleMesh" id="CapsuleMesh_58mr4"]
+[sub_resource type="CapsuleMesh" id="CapsuleMesh_qr4by"]
 radius = 0.25
 height = 1.5
 
@@ -43,7 +43,7 @@ mouse_filter = 1
 [node name="MeshInstance3D" type="MeshInstance3D" parent="visuals"]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.75, 0)
 material_override = SubResource("StandardMaterial3D_jrpxw")
-mesh = SubResource("CapsuleMesh_58mr4")
+mesh = SubResource("CapsuleMesh_qr4by")
 skeleton = NodePath("../..")
 
 [node name="collider" type="CollisionShape3D" parent="."]
