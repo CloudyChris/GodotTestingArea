@@ -7,17 +7,28 @@ extends Resource
 			inventory_id = UUID.new()
 			gen_UUID = true
 		
-@export var inventory_id : UUID
+@export var inventory_id : UUID :
+	set(aUUID):
+		inventory_id = aUUID
+		gen_UUID = true
+
 @export var items : Array[PackedItem] = []
+
+func _init():
+	inventory_id = UUID.new()
 
 func replace(aUUID:UUID, aPackedItemArray:Array[PackedItem]):
 	inventory_id = aUUID
 	items = aPackedItemArray
 
 func create(aUUID:UUID, aPackedItemArray:Array[PackedItem]):
-	var new_inventory : Inventory = Inventory.new()
+	var new_inventory : Inventory
 	new_inventory.inventory_id = aUUID
 	new_inventory.items = aPackedItemArray
+	return new_inventory
+	
+func create_new():
+	var new_inventory : Inventory = Inventory.new()
 	return new_inventory
 
 func update_from_inventory(anInventory:Inventory):

@@ -8,3 +8,5 @@ extends Resource
 		else:
 			inventory.overwrite_inventory(new_inventory)
 	
+func _init():
+	pass
