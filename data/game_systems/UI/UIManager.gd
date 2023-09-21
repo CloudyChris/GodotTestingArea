@@ -15,7 +15,9 @@ func unregister_player():
 	player = null
 	
 func enable_interact_component(aInteractor : Node3D) -> void:
-	aInteractor.interact_component.entered_interact_area()
+	if player:
+		aInteractor.interact_component.entered_interact_area()
 
 func disable_interact_component(aInteractor : Node3D) -> void:
-	aInteractor.interact_component.left_interact_area()
+	if player:
+		aInteractor.interact_component.left_interact_area()

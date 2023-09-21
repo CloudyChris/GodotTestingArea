@@ -3,6 +3,8 @@ extends Node
 
 enum State {
 	Null,
+	Downed,
+	Dead,
 	Idle,
 	Walk,
 	Run,

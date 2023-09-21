@@ -9,6 +9,7 @@ enum ItemType {
 	Usable, # can be used (i.e: torch, repair kit, puzzle piece)
 	QuestItem, # quest item
 	Trophy, # grant passive bonuses and remind you of the stuff you went through to get them
+	Loot, # a special item that drops from defeated enemies that looks like a bag. It has a special interaction color (gold)
 	Unknown # sometimes you're too dum dum to know what something is or what it's useful for
 }
 

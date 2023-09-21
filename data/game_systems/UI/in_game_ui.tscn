@@ -1,17 +1,8 @@
 [gd_scene load_steps=4 format=3 uid="uid://cduuq8koek2go"]
 
+[ext_resource type="Script" path="res://data/game_systems/UI/in_game_ui.gd" id="1_mt7kt"]
 [ext_resource type="Texture2D" uid="uid://cmg56r737btg4" path="res://data/assets/UI/crosshair.png" id="1_pdhpv"]
 [ext_resource type="Script" path="res://data/game_systems/UI/reticle.gd" id="2_g0klo"]
-
-[sub_resource type="GDScript" id="GDScript_hf1im"]
-script/source = "extends Control
-
-func _ready():
-	pass
-
-func _process(_delta):
-	pass
-"
 
 [node name="InGame_UI" type="Control"]
 process_mode = 3
@@ -21,7 +12,7 @@ anchor_right = 1.0
 anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
-script = SubResource("GDScript_hf1im")
+script = ExtResource("1_mt7kt")
 metadata/_edit_use_anchors_ = true
 
 [node name="reticle_cc" type="CenterContainer" parent="."]
