@@ -4,6 +4,12 @@ var player : Player
 
 var can_interact : bool = false
 
+func _ready():
+	pass
+
+func init():
+	pass
+
 func register_player(aPlayer : Player):
 	player = aPlayer
 	player.interact_area.body_entered.connect(enable_interact_component)

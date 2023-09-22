@@ -1,4 +1,3 @@
-@tool
 class_name Item
 extends Resource
 
@@ -18,7 +17,11 @@ enum ItemType {
 		if bFlag and not item_id:
 			item_id = UUID.new()
 			gen_UUID = true
-		
+		elif not bFlag and not item_id:
+			gen_UUID = bFlag
+		else:
+			pass
+
 @export var item_id : UUID
 @export var item_name : String = ""
 @export var inventory_icon : CompressedTexture2D

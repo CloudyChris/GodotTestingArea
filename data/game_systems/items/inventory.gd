@@ -12,19 +12,19 @@ extends Resource
 		inventory_id = aUUID
 		gen_UUID = true
 
-@export var items : Array[PackedItem] = []
+@export var items : Array[Item] = []
 
 func _init():
 	inventory_id = UUID.new()
 
-func replace(aUUID:UUID, aPackedItemArray:Array[PackedItem]):
+func replace(aUUID:UUID, aItemArray:Array[Item]):
 	inventory_id = aUUID
-	items = aPackedItemArray
+	items = aItemArray
 
-func create(aUUID:UUID, aPackedItemArray:Array[PackedItem]):
+func create(aUUID:UUID, aItemArray:Array[Item]):
 	var new_inventory : Inventory
 	new_inventory.inventory_id = aUUID
-	new_inventory.items = aPackedItemArray
+	new_inventory.items = aItemArray
 	return new_inventory
 	
 func create_new():
@@ -41,10 +41,8 @@ func overwrite_inventory(anInventory:Inventory):
 	inventory_id = anInventory.inventory_id
 	items = anInventory.items
 
-func update_from_array(aPackedItemArray:Array[PackedItem]):
-	items.append_array(aPackedItemArray)
+func update_from_array(aItemArray:Array[Item]):
+	items.append_array(aItemArray)
 
-func overwrite_from_array(aPackedItemArray:Array[PackedItem]):
-	items = aPackedItemArray
-
-
+func overwrite_from_array(aItemArray:Array[Item]):
+	items = aItemArray
