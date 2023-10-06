@@ -43,7 +43,7 @@ load_path = "res://.godot/imported/test.png-dde431d70706e994304ae94634f2a17d.cte
 script = ExtResource("2_elyfw")
 myUUID_stringified = "7679e08b-58a6-4eeb-9a48-95bf6fc967a4"
 
-[sub_resource type="Resource" id="Resource_qfg6o"]
+[sub_resource type="Resource" id="Resource_law2t"]
 resource_local_to_scene = true
 script = ExtResource("3_0v2u6")
 gen_UUID = true
@@ -53,6 +53,8 @@ inventory_icon = SubResource("CompressedTexture2D_4n1t4")
 item_type = Array[int]([6])
 stackable = true
 max_stack = 5
+weight = 0
+modifiable = true
 
 [sub_resource type="ProceduralSkyMaterial" id="ProceduralSkyMaterial_haern"]
 
@@ -327,7 +329,7 @@ shape = SubResource("ConvexPolygonShape3D_ft4j5")
 
 [node name="test_item_prefab" parent="map" instance=ExtResource("1_dku2d")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 15, 0.25, 3)
-item = SubResource("Resource_qfg6o")
+item = SubResource("Resource_law2t")
 
 [node name="Player" parent="." instance=ExtResource("1_glpvp")]
 transform = Transform3D(-1, 0, -8.74228e-08, 0, 1, 0, 8.74228e-08, 0, -1, 0, 0, 0)
