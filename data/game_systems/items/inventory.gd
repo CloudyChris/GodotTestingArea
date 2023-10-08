@@ -12,61 +12,105 @@ extends Resource
 		inventory_id = aUUID
 		gen_UUID = true
 
-@export var items : Array[Item] = []
+@export var items : Array[InventorySlot] = []
 
-var weight : int = 0
+var iWeight : float = 0
 
 func _init():
-	pass
-
-func assign_new_UUID():
 	inventory_id = UUID.new()
-
-func replace(aUUID:UUID, aItemArray:Array[Item]):
-	inventory_id = aUUID
-	items = aItemArray
-
-func create(aUUID:UUID, aItemArray:Array[Item]):
-	var new_inventory : Inventory = Inventory.new()
-	new_inventory.inventory_id = aUUID
-	new_inventory.items = aItemArray
-	return new_inventory
-	
-func create_new():
-	var new_inventory : Inventory = Inventory.new()
-	return new_inventory
-
-func update_from_inventory(anInventory:Inventory): # loot all, pretty much
-	items.append_array(anInventory.items) # TODO: should change this to a loop to properly stack and place all items
-	compute_weight()
-
-func overwrite_from_inventory(anInventory:Inventory):
-	items = anInventory.items
-	compute_weight()
-
-func overwrite_inventory(anInventory:Inventory):
-	inventory_id = anInventory.inventory_id
-	items = anInventory.items
-	compute_weight()
-
-func update_from_array(aItemArray:Array[Item]): # loot all, pretty much, but with a list of items instead of an inventory (think multiple quest rewards)
-	items.append_array(aItemArray) # TODO: should change this to a loop to properly stack and place all items
-	compute_weight()
-
-func overwrite_from_array(aItemArray:Array[Item]):
-	items = aItemArray
+	for i in range(32):
+		items.append(InventorySlot.new())
 
 func compute_weight():
-	pass
+	for slot in items:
+		if slot.item:
+			iWeight += slot.item.computed_item_weight
 
-func find_first_empty_slot():
-	pass
+func find_first_empty_slot(search_start: int = 0) -> int:
+	for slot in range(search_start, items.size()):
+		if not items[slot].item:
+			return slot
+	return -1
 
-func add_item(aItem: Item, iSlotIndex: int = -1):
-	pass
+func find_first_stack(aItem: Item, search_start: int = 0) -> int:
+	for slot in range(search_start, items.size()):
+		if items[slot].item.item_id == aItem.item_id and items[slot].item.item_modifier.compare_modifier(aItem.item_modifier):
+			return slot
+	
+	return -1
 
-func move_item():
-	pass
+func add_item(aItem: Item, search_start: int = 0) -> void:
+	if aItem.bStackable:
+		var target_slot : int = find_first_stack(aItem, search_start)
+		if target_slot < 0:
+			target_slot = find_first_empty_slot(search_start)
+			if target_slot < 0:
+				for i in range(8):
+					items.append(InventorySlot.new())
+				add_item(aItem, search_start)
+			else:
+				items[target_slot].item = aItem.duplicate(true)
+		else:
+			items[target_slot].item.item_count += aItem.item_count
+	else:
+		var target_slot = find_first_empty_slot(search_start)
+		if target_slot < 0:
+			for i in range(8):
+				items.append(InventorySlot.new())
+			add_item(aItem, search_start)
+		else:
+			items[target_slot].item = aItem.duplicate(true)
+	
+	compute_weight()
 
-func remove_item():
-	pass
+func add_item_array(aItemArray: Array[Item]):
+	for item_to_add in aItemArray:
+		add_item(item_to_add)
+
+func move_item(iStartSlot: int, iTargetSlot: int) -> Item:
+	var item_to_return : Item = null
+	if iStartSlot > items.size() or iTargetSlot > items.size() or iStartSlot < 0 or iTargetSlot < 0:
+		push_error("Move item called with slot indices out of bounds")
+		return
+	if items[iStartSlot].item:
+		if items[iTargetSlot].item:
+			item_to_return = items[iTargetSlot].item.duplicate(true)
+		items[iTargetSlot].item = items[iStartSlot].item.duplicate(true)
+		items[iStartSlot].item = null
+	return item_to_return
+
+func split_item(iStartSlot: int, iTargetSlot: int, iAmount: int) -> Item:
+	var item_to_return : Item = null
+	if iStartSlot > items.size() or iTargetSlot > items.size() or iStartSlot < 0 or iTargetSlot < 0:
+		push_error("Split item called with slot indices out of bounds")
+		return null
+	if items[iStartSlot].item:
+		if iAmount > items[iStartSlot].item.item_count:
+			push_error("Split item called with iAmount bigger than item_count")
+			return null
+		elif iAmount == items[iStartSlot].item.item_count:
+			if items[iTargetSlot].item:
+				item_to_return = items[iTargetSlot].item.duplicate(true)
+			items[iTargetSlot].item = items[iStartSlot].item.duplicate(true)
+			items[iStartSlot].item = null
+		else:
+			if items[iTargetSlot].item:
+				item_to_return = items[iTargetSlot].item.duplicate(true)
+			items[iStartSlot].item.item_count -= iAmount
+			items[iTargetSlot].item = items[iStartSlot].item.duplicate(true)
+			items[iTargetSlot].item.item_count = iAmount
+	return item_to_return
+
+func remove_item(iTargetSlot: int, iAmount: int) -> Item:
+	var item_to_remove : Item = null
+	if items[iTargetSlot].item and iAmount > 0 and iAmount <= items[iTargetSlot].item.item_count:
+		item_to_remove = items[iTargetSlot].item.duplicate(true)
+		if iAmount == items[iTargetSlot].item.item_count:
+			items[iTargetSlot].item = null
+		else:
+			item_to_remove.item_count = iAmount
+			items[iTargetSlot].item.item_count -= iAmount
+	else:
+		push_error("Remove item called with empty target slot or iAmount bigger than item_count")
+		return null
+	return item_to_remove

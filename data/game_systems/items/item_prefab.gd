@@ -5,6 +5,7 @@ extends PhysicsBody3D
 
 func pick_up() -> void:
 	print(item.item_id.as_string(), " ", item.item_name)
+	InventoryManager.add_item(item)
 	queue_free()
 
 func interact():

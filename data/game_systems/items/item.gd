@@ -26,17 +26,27 @@ enum ItemType {
 @export var item_name : String = ""
 @export var inventory_icon : CompressedTexture2D
 @export var item_type : Array[ItemType] = []
+@export var item_weight : float = 0.1 :
+	set(new_item_weight):
+		item_weight = new_item_weight
+		computed_item_weight = compute_weight()
 
-@export var stackable : bool = false
-# max stack 0 means infinite
-@export var max_stack : int = 0
+@export var computed_item_weight : float = 0.1
 
-@export var weight : int = 0
+@export var bModifiable : bool = true
+@export var item_modifier : ItemModifier = ItemModifier.new()
 
-@export var modifiable : bool = true
+@export var bStackable : bool = false
+@export var item_count : int = 1
 
 func _init():
 	pass
 
 func compute_weight():
-	pass
+	if bModifiable:
+		if item_modifier:
+			return item_weight * item_modifier.mod_weight
+		else:
+			return item_weight
+	else:
+		return item_weight
