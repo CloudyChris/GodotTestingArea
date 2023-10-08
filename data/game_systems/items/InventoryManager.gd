@@ -1,6 +1,6 @@
 extends Node
 
-var inventory : Inventory
+var inventory : Inventory = Inventory.new()
 
 var base_max_weight : float = 100
 var max_weight : float = base_max_weight

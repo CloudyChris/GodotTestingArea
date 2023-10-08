@@ -1,17 +1,17 @@
 extends Node
 
-var currentGameSave : GameSave = null
-
 func save(save_path: String):
-	currentGameSave.inventory = InventoryManager.save()
+	var newGameSave : GameSave = GameSave.new()
+	newGameSave.inventory = InventoryManager.save()
 	
-	var error = ResourceSaver.save(currentGameSave, save_path)
+	var error = ResourceSaver.save(newGameSave, save_path)
 	if error != OK:
 		push_error("An error occurred while saving the item prefab to disk.")
 
 func load_save(save_path: String):
 	if ResourceLoader.exists(save_path):
-		currentGameSave = ResourceLoader.load(save_path, "GameSave")
+		# TODO: update to multi-threaded at your earliest convenience
+		var loadedGameSave : GameSave = ResourceLoader.load(save_path, "GameSave")
 		
-		if currentGameSave:
-			InventoryManager.load_save(currentGameSave)
+		if loadedGameSave:
+			InventoryManager.load_save(loadedGameSave)

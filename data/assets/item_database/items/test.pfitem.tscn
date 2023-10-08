@@ -1,27 +1,51 @@
-[gd_scene load_steps=11 format=3 uid="uid://dnmpkknaw7wvx"]
+[gd_scene load_steps=14 format=3]
 
 [ext_resource type="Script" path="res://data/assets/item_database/items/test.pfitem.gd" id="1_hjvti"]
-[ext_resource type="PackedScene" uid="uid://2s02o4f77oj1" path="res://data/game_systems/interactions/interaction_component.tscn" id="1_v71xk"]
+[ext_resource type="PackedScene" path="res://data/game_systems/interactions/interaction_component.tscn" id="1_v71xk"]
 [ext_resource type="Script" path="res://data/game_systems/utils/uuid.gd" id="2_1kx1a"]
 [ext_resource type="Script" path="res://data/game_systems/items/item.gd" id="3_57p5e"]
+[ext_resource type="Script" path="res://data/game_systems/items/item_modifier.gd" id="3_mw1qu"]
+[ext_resource type="Script" path="res://data/game_systems/interactions/interaction_component.gd" id="6_euulx"]
 
-[sub_resource type="CompressedTexture2D" id="CompressedTexture2D_kkkak"]
+[sub_resource type="CompressedTexture2D" id="CompressedTexture2D_8k7xy"]
 load_path = "res://.godot/imported/test.png-dde431d70706e994304ae94634f2a17d.ctex"
 
-[sub_resource type="Resource" id="Resource_0kqj7"]
+[sub_resource type="Resource" id="Resource_72tb1"]
 script = ExtResource("2_1kx1a")
 myUUID_stringified = "7679e08b-58a6-4eeb-9a48-95bf6fc967a4"
 
-[sub_resource type="Resource" id="Resource_4d70c"]
+[sub_resource type="Resource" id="Resource_m76o0"]
+script = ExtResource("3_mw1qu")
+mod_name = ""
+mod_physical_damage = 0.0
+mod_bleed_chance = 0.0
+mod_sick_change = 0.0
+mod_shock_chance = 0.0
+mod_fire_damage = 0.0
+mod_cold_damage = 0.0
+mod_electric_damage = 0.0
+mod_light_damage = 0.0
+mod_dark_damage = 0.0
+mod_durability = 0.0
+mod_durability_recovery = 0.0
+mod_weight = 1.0
+mod_unique = false
+mod_soulbound = false
+
+[sub_resource type="Resource" id="Resource_ok844"]
 resource_local_to_scene = true
 script = ExtResource("3_57p5e")
 gen_UUID = true
-item_id = SubResource("Resource_0kqj7")
+item_id = SubResource("Resource_72tb1")
 item_name = "Test"
-inventory_icon = SubResource("CompressedTexture2D_kkkak")
+inventory_icon = SubResource("CompressedTexture2D_8k7xy")
 item_type = Array[int]([6])
-stackable = true
-max_stack = 5
+item_weight = 0.1
+computed_item_weight = 0.1
+bModifiable = true
+item_modifier = SubResource("Resource_m76o0")
+bStackable = false
+item_count = 1
 
 [sub_resource type="ConvexPolygonShape3D" id="ConvexPolygonShape3D_rghf8"]
 points = PackedVector3Array(0.25, 0.25, 0.25, 0.25, 0.25, -0.25, -0.25, 0.25, 0.25, 0.25, -0.25, 0.25, 0.25, -0.25, -0.25, -0.25, 0.25, -0.25, -0.25, -0.25, 0.25, -0.25, -0.25, -0.25)
@@ -34,7 +58,7 @@ size = Vector3(0.5, 0.5, 0.5)
 
 [node name="test_item_prefab" type="StaticBody3D"]
 script = ExtResource("1_hjvti")
-item = SubResource("Resource_4d70c")
+item = SubResource("Resource_ok844")
 
 [node name="collider" type="CollisionShape3D" parent="."]
 shape = SubResource("ConvexPolygonShape3D_rghf8")
@@ -46,4 +70,5 @@ material_override = SubResource("StandardMaterial3D_hw8xl")
 mesh = SubResource("BoxMesh_jewso")
 skeleton = NodePath("../..")
 
-[node name="InteractionComponent" parent="." instance=ExtResource("1_v71xk")]
+[node name="InteractionComponent" type="Node" parent="." instance=ExtResource("1_v71xk")]
+script = ExtResource("6_euulx")

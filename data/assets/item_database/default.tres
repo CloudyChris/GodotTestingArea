@@ -1,0 +1,17 @@
+[gd_resource type="Resource" script_class="ItemDb" load_steps=5 format=3 uid="uid://cnmv4b7n0h2bu"]
+
+[ext_resource type="Script" path="res://data/game_systems/utils/uuid.gd" id="1_58w4b"]
+[ext_resource type="Script" path="res://data/game_systems/items/item_db.gd" id="1_adiqq"]
+[ext_resource type="Resource" uid="uid://18rfur4a5c5n" path="res://data/assets/item_database/items/test.pkitem.tres" id="1_xptwr"]
+
+[sub_resource type="Resource" id="Resource_u4o5x"]
+script = ExtResource("1_58w4b")
+myUUID_stringified = "1f15e1b0-f533-4ded-aa7e-85231a2de99f"
+
+[resource]
+script = ExtResource("1_adiqq")
+gen_UUID = true
+item_db_id = SubResource("Resource_u4o5x")
+items = {
+"7679e08b-58a6-4eeb-9a48-95bf6fc967a4": ExtResource("1_xptwr")
+}

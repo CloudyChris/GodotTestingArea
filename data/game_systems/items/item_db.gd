@@ -2,7 +2,16 @@
 class_name ItemDb
 extends Resource
 
-# do not modify this array by hand
+@export var gen_UUID : bool = false :
+	set(bFlag):
+		if bFlag and not item_db_id:
+			item_db_id = UUID.new()
+			gen_UUID = true
+		elif not bFlag and not item_db_id:
+			gen_UUID = bFlag
+		else:
+			pass
+@export var item_db_id : UUID
 @export var items_add_slot : PackedItem :
 	set(new_item):
 		if new_item and new_item.item_id:

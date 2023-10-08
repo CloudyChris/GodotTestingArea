@@ -17,10 +17,10 @@ config/icon="res://icon.svg"
 [autoload]
 
 GameManager="*res://data/game_systems/GameManager.gd"
-GameStateManager="*res://data/game_systems/game_state/GameStateManager.gd"
-ItemRepository="*res://data/game_systems/items/ItemRepository.gd"
-InventoryManager="*res://data/game_systems/items/InventoryManager.gd"
 UIManager="*res://data/game_systems/UI/UIManager.gd"
+ItemRepository="*res://data/game_systems/items/ItemRepository.gd"
+GameStateManager="*res://data/game_systems/game_state/GameStateManager.gd"
+InventoryManager="*res://data/game_systems/items/InventoryManager.gd"
 
 [editor_plugins]
 
