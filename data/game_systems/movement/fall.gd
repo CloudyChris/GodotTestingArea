@@ -4,8 +4,13 @@ extends BaseState
 @export var TERMINAL_VELOCITY : float = 20.0
 @export var GRAVITY : float = 9.8
 
+func enter() -> void:
+	#super.enter()
+	player.motion_mode = CharacterBody3D.MOTION_MODE_GROUNDED
+
 func physics_process(delta: float) -> int:
 	super(delta)
+	
 	var input_dir = Input.get_vector("move_left", "move_right", "move_forward", "move_backward")
 	var direction = (player.transform.basis * Vector3(input_dir.x, 0, input_dir.y)).normalized()
 	direction = direction.rotated(Vector3.UP, player.springArmPivot.rotation.y)

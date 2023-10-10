@@ -6,6 +6,7 @@ extends BaseState
 
 func enter() -> void:
 	#super.enter()
+	player.motion_mode = CharacterBody3D.MOTION_MODE_FLOATING
 	player.velocity.y = 0
 
 func input(event: InputEvent) -> int:
@@ -14,6 +15,7 @@ func input(event: InputEvent) -> int:
 
 func physics_process(delta: float) -> int:
 	super(delta)
+	
 	var input_dir = Input.get_vector("move_left", "move_right", "move_forward", "move_backward")
 	var direction = (player.transform.basis * Vector3(input_dir.x, input_dir.y, input_dir.y)).normalized()
 	direction = direction.rotated(Vector3.UP, player.springArmPivot.rotation.y)
@@ -34,16 +36,15 @@ func physics_process(delta: float) -> int:
 	if Input.is_action_pressed("jump"):
 		player.velocity.y = SPEED
 	
-	if not player.is_in_water():
-		if player.is_on_floor():
-			if direction:
-				if get_parent().is_walking:
-					return State.Walk
-				else:
-					return State.Run
+	if player.is_on_floor():
+		if direction:
+			if get_parent().is_walking:
+				return State.Walk
 			else:
-				return State.Idle
+				return State.Run
 		else:
-			return State.Fall
+			return State.Idle
+	else:
+		return State.Fall
 		
 	return State.Null

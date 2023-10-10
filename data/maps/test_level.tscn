@@ -1,6 +1,6 @@
-[gd_scene load_steps=21 format=3 uid="uid://7m7tv0k3d27g"]
+[gd_scene load_steps=25 format=3 uid="uid://7m7tv0k3d27g"]
 
-[ext_resource type="PackedScene" uid="uid://dnmpkknaw7wvx" path="res://data/assets/item_database/items/test.pfitem.tscn" id="1_dku2d"]
+[ext_resource type="PackedScene" uid="uid://dk3osp2pqhnsw" path="res://data/assets/item_database/items/test.pfitem.tscn" id="1_dku2d"]
 [ext_resource type="PackedScene" uid="uid://ccxljq4722nd4" path="res://data/game_systems/Player.tscn" id="1_glpvp"]
 [ext_resource type="Script" path="res://data/game_systems/utils/uuid.gd" id="2_elyfw"]
 [ext_resource type="Script" path="res://data/game_systems/items/item.gd" id="3_0v2u6"]
@@ -20,6 +20,13 @@ size = Vector3(4, 4, 4)
 [sub_resource type="ConvexPolygonShape3D" id="ConvexPolygonShape3D_tfo0t"]
 points = PackedVector3Array(2, 2, 2, 2, 2, -2, -2, 2, 2, 2, -2, 2, 2, -2, -2, -2, 2, -2, -2, -2, 2, -2, -2, -2)
 
+[sub_resource type="PrismMesh" id="PrismMesh_64feu"]
+left_to_right = 1.0
+size = Vector3(8, 4, 4)
+
+[sub_resource type="ConvexPolygonShape3D" id="ConvexPolygonShape3D_yohkc"]
+points = PackedVector3Array(4, 2, 2, 4, 2, -2, -4, -2, 2, 4, -2, 2, 4, -2, -2, -4, -2, -2)
+
 [sub_resource type="StandardMaterial3D" id="StandardMaterial3D_rof3n"]
 transparency = 1
 albedo_color = Color(0.290196, 1, 1, 0.533333)
@@ -36,6 +43,12 @@ size = Vector3(2, 5, 2)
 [sub_resource type="ConvexPolygonShape3D" id="ConvexPolygonShape3D_ft4j5"]
 points = PackedVector3Array(-1, -2.5, -1, -1, -2.5, 1, -1, 2.5, -1, 1, -2.5, -1, 1, -2.5, 1, -1, 2.5, 1, 1, 2.5, -1, 1, 2.5, 1)
 
+[sub_resource type="BoxMesh" id="BoxMesh_a62nf"]
+size = Vector3(10, 2, 2)
+
+[sub_resource type="ConvexPolygonShape3D" id="ConvexPolygonShape3D_74nt7"]
+points = PackedVector3Array(5, 1, 1, 5, 1, -1, -5, 1, 1, 5, -1, 1, 5, -1, -1, -5, 1, -1, -5, -1, 1, -5, -1, -1)
+
 [sub_resource type="CompressedTexture2D" id="CompressedTexture2D_4n1t4"]
 load_path = "res://.godot/imported/test.png-dde431d70706e994304ae94634f2a17d.ctex"
 
@@ -43,7 +56,7 @@ load_path = "res://.godot/imported/test.png-dde431d70706e994304ae94634f2a17d.cte
 script = ExtResource("2_elyfw")
 myUUID_stringified = "7679e08b-58a6-4eeb-9a48-95bf6fc967a4"
 
-[sub_resource type="Resource" id="Resource_qb347"]
+[sub_resource type="Resource" id="Resource_fibc8"]
 resource_local_to_scene = true
 script = ExtResource("3_0v2u6")
 gen_UUID = true
@@ -304,6 +317,15 @@ mesh = SubResource("BoxMesh_ggo7v")
 [node name="CollisionShape3D" type="CollisionShape3D" parent="map/pool_wall16"]
 shape = SubResource("ConvexPolygonShape3D_tfo0t")
 
+[node name="pool_ramp" type="StaticBody3D" parent="map"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 2, -2, 16)
+
+[node name="MeshInstance3D" type="MeshInstance3D" parent="map/pool_ramp"]
+mesh = SubResource("PrismMesh_64feu")
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="map/pool_ramp"]
+shape = SubResource("ConvexPolygonShape3D_yohkc")
+
 [node name="water" type="Area3D" parent="map"]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -2, 20)
 collision_layer = 2
@@ -319,18 +341,26 @@ transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -1, 0)
 shape = SubResource("ConvexPolygonShape3D_prtwl")
 
 [node name="occluder_obstacle" type="StaticBody3D" parent="map"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 15, 2.5, 0)
 
 [node name="MeshInstance3D" type="MeshInstance3D" parent="map/occluder_obstacle"]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 15, 2.5, 0)
 mesh = SubResource("BoxMesh_xelk3")
 
 [node name="CollisionShape3D" type="CollisionShape3D" parent="map/occluder_obstacle"]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 15, 2.5, 0)
 shape = SubResource("ConvexPolygonShape3D_ft4j5")
+
+[node name="climb_obstacle" type="StaticBody3D" parent="map"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 21, 1, 0)
+
+[node name="MeshInstance3D" type="MeshInstance3D" parent="map/climb_obstacle"]
+mesh = SubResource("BoxMesh_a62nf")
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="map/climb_obstacle"]
+shape = SubResource("ConvexPolygonShape3D_74nt7")
 
 [node name="test_item_prefab" parent="map" instance=ExtResource("1_dku2d")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 15, 0.25, 3)
-item = SubResource("Resource_qb347")
+item = SubResource("Resource_fibc8")
 
 [node name="Player" parent="." instance=ExtResource("1_glpvp")]
 transform = Transform3D(-1, 0, -8.74228e-08, 0, 1, 0, 8.74228e-08, 0, -1, 0, 0, 0)
