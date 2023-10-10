@@ -24,6 +24,7 @@ func _init():
 func compute_weight():
 	for slot in items:
 		if slot.item:
+			slot.item.compute_weight()
 			iWeight += slot.item.computed_item_weight
 
 func find_first_empty_slot(search_start: int = 0) -> int:

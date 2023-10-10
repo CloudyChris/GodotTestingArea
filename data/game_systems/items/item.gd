@@ -26,10 +26,7 @@ enum ItemType {
 @export var item_name : String = ""
 @export var inventory_icon : CompressedTexture2D
 @export var item_type : Array[ItemType] = []
-@export var item_weight : float = 0.1 :
-	set(new_item_weight):
-		item_weight = new_item_weight
-		computed_item_weight = compute_weight()
+@export var item_weight : float = 0.1
 
 @export var computed_item_weight : float = 0.1
 
