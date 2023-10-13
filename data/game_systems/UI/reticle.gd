@@ -11,3 +11,10 @@ func _process(_delta):
 		modulate = cinteract
 	else:
 		modulate = cnormal
+	
+	if Input.get_mouse_mode() == Input.MOUSE_MODE_CAPTURED:
+		visible = true
+	elif Input.get_mouse_mode() == Input.MOUSE_MODE_VISIBLE:
+		visible = false
+	else:
+		push_warning("Mouse mode in unaccounted-for state.")

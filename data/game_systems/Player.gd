@@ -12,7 +12,7 @@ extends CharacterBody3D
 @onready var interact_area = $interact_area
 
 var shouldRotateCamera : bool = false
-var captureMode : bool = false
+var capture_mode : bool = false
 var current_roller_divergence : Vector2 = Vector2.ZERO
 var current_mcd : float
 

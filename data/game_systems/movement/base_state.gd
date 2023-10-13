@@ -15,7 +15,7 @@ enum State {
 
 @export var animation_name : String
 
-@export var CAMERA_SENSITIVITY : float = 0.005
+@export var CAMERA_SENSITIVITY : float = 0.004
 @export var MAX_CAMERA_DISTANCE : float = 5.0
 @export var CAMERA_ZOOM_SENSITIVITY : float = 1.5
 
@@ -43,14 +43,14 @@ func input(event: InputEvent) -> int:
 		get_tree().quit()
 	
 	if Input.is_action_just_released("toggle_mouse_capture"):
-		player.captureMode = not player.captureMode
-		player.shouldRotateCamera = false
-		if player.captureMode:
+		player.capture_mode = not player.capture_mode
+		player.shouldRotateCamera = player.capture_mode
+		if player.capture_mode:
 			Input.set_mouse_mode(Input.MOUSE_MODE_CAPTURED)
 		else:
 			Input.set_mouse_mode(Input.MOUSE_MODE_VISIBLE)
 	
-	if not player.captureMode:
+	if not player.capture_mode:
 		if Input.is_action_just_pressed("right_click"):
 			player.shouldRotateCamera = true
 			Input.set_mouse_mode(Input.MOUSE_MODE_CAPTURED)
@@ -59,7 +59,7 @@ func input(event: InputEvent) -> int:
 			player.shouldRotateCamera = false
 			Input.set_mouse_mode(Input.MOUSE_MODE_VISIBLE)
 	
-	if (player.captureMode or player.shouldRotateCamera) and (event is InputEventMouseMotion):
+	if (player.capture_mode or player.shouldRotateCamera) and (event is InputEventMouseMotion):
 		player.springArmPivot.rotate_y(-event.relative.x * CAMERA_SENSITIVITY)
 		player.visuals.rotation.y = player.springArmPivot.rotation.y
 		player.collider.rotation.y = player.springArmPivot.rotation.y

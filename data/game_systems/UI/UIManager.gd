@@ -27,3 +27,6 @@ func enable_interact_component(aInteractor : Node3D) -> void:
 func disable_interact_component(aInteractor : Node3D) -> void:
 	if player:
 		aInteractor.interact_component.left_interact_area()
+
+func _process(delta):
+	pass
