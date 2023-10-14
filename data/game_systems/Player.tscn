@@ -1,9 +1,10 @@
-[gd_scene load_steps=12 format=3 uid="uid://ccxljq4722nd4"]
+[gd_scene load_steps=13 format=3 uid="uid://ccxljq4722nd4"]
 
 [ext_resource type="Script" path="res://data/game_systems/Player.gd" id="1_bt42k"]
 [ext_resource type="PackedScene" uid="uid://dtj4xjjqlmqmo" path="res://data/game_systems/movement/state_manager.tscn" id="2_6qpuk"]
 [ext_resource type="Script" path="res://data/game_systems/interact_ray.gd" id="3_61e3u"]
 [ext_resource type="PackedScene" uid="uid://cduuq8koek2go" path="res://data/game_systems/UI/in_game_ui.tscn" id="4_pngph"]
+[ext_resource type="Script" path="res://data/game_systems/interact_area.gd" id="5_507lf"]
 
 [sub_resource type="Gradient" id="Gradient_2nc8r"]
 interpolation_mode = 1
@@ -80,6 +81,7 @@ transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1, 0)
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.75, 0)
 collision_layer = 4096
 collision_mask = 4096
+script = ExtResource("5_507lf")
 
 [node name="collider" type="CollisionShape3D" parent="interact_area"]
 shape = SubResource("SphereShape3D_wsp3x")

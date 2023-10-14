@@ -1,11 +1,10 @@
-[gd_scene load_steps=14 format=3]
+[gd_scene load_steps=13 format=3 uid="uid://cbcs6ytqsojio"]
 
 [ext_resource type="Script" path="res://data/assets/item_database/items/test.pfitem.gd" id="1_hjvti"]
-[ext_resource type="PackedScene" path="res://data/game_systems/interactions/interaction_component.tscn" id="1_v71xk"]
+[ext_resource type="PackedScene" uid="uid://2s02o4f77oj1" path="res://data/game_systems/interactions/interaction_component.tscn" id="1_v71xk"]
 [ext_resource type="Script" path="res://data/game_systems/utils/uuid.gd" id="2_1kx1a"]
 [ext_resource type="Script" path="res://data/game_systems/items/item.gd" id="3_57p5e"]
 [ext_resource type="Script" path="res://data/game_systems/items/item_modifier.gd" id="3_xngmn"]
-[ext_resource type="Script" path="res://data/game_systems/interactions/interaction_component.gd" id="6_1idpg"]
 
 [sub_resource type="CompressedTexture2D" id="CompressedTexture2D_j43xm"]
 load_path = "res://.godot/imported/test.png-dde431d70706e994304ae94634f2a17d.ctex"
@@ -70,5 +69,4 @@ material_override = SubResource("StandardMaterial3D_hw8xl")
 mesh = SubResource("BoxMesh_jewso")
 skeleton = NodePath("../..")
 
-[node name="InteractionComponent" type="Node" parent="." instance=ExtResource("1_v71xk")]
-script = ExtResource("6_1idpg")
+[node name="InteractionComponent" parent="." instance=ExtResource("1_v71xk")]

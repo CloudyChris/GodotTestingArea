@@ -17,7 +17,7 @@ config/icon="res://icon.svg"
 [autoload]
 
 GameManager="*res://data/game_systems/GameManager.gd"
-UIManager="*res://data/game_systems/UI/UIManager.gd"
+UIManager="*res://data/game_systems/UI/UIManager.tscn"
 ItemRepository="*res://data/game_systems/items/ItemRepository.gd"
 GameStateManager="*res://data/game_systems/game_state/GameStateManager.gd"
 InventoryManager="*res://data/game_systems/items/InventoryManager.gd"
