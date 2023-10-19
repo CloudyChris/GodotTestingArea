@@ -68,19 +68,7 @@ func add_item_array(aItemArray: Array[Item]):
 	for item_to_add in aItemArray:
 		add_item(item_to_add)
 
-func move_item(iStartSlot: int, iTargetSlot: int) -> Item:
-	var item_to_return : Item = null
-	if iStartSlot > items.size() or iTargetSlot > items.size() or iStartSlot < 0 or iTargetSlot < 0:
-		push_error("Move item called with slot indices out of bounds")
-		return
-	if items[iStartSlot].item:
-		if items[iTargetSlot].item:
-			item_to_return = items[iTargetSlot].item.duplicate(true)
-		items[iTargetSlot].item = items[iStartSlot].item.duplicate(true)
-		items[iStartSlot].item = null
-	return item_to_return
-
-func split_item(iStartSlot: int, iTargetSlot: int, iAmount: int) -> Item:
+func move_item(iStartSlot: int, iTargetSlot: int, iAmount: int) -> Item:
 	var item_to_return : Item = null
 	if iStartSlot > items.size() or iTargetSlot > items.size() or iStartSlot < 0 or iTargetSlot < 0:
 		push_error("Split item called with slot indices out of bounds")
@@ -114,4 +102,7 @@ func remove_item(iTargetSlot: int, iAmount: int) -> Item:
 	else:
 		push_error("Remove item called with empty target slot or iAmount bigger than item_count")
 		return null
+	
+	compute_weight()
+	
 	return item_to_remove
