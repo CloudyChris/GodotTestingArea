@@ -7,11 +7,6 @@ func _ready():
 	pass
 
 func _process(_delta):
-	if UIManager.can_interact:
-		modulate = cinteract
-	else:
-		modulate = cnormal
-	
 	if Input.get_mouse_mode() == Input.MOUSE_MODE_CAPTURED:
 		visible = true
 	elif Input.get_mouse_mode() == Input.MOUSE_MODE_VISIBLE:

@@ -1,9 +1,6 @@
-[gd_scene load_steps=25 format=3 uid="uid://7m7tv0k3d27g"]
+[gd_scene load_steps=18 format=3 uid="uid://7m7tv0k3d27g"]
 
-[ext_resource type="PackedScene" uid="uid://cbcs6ytqsojio" path="res://data/assets/item_database/items/test.pfitem.tscn" id="1_dku2d"]
 [ext_resource type="PackedScene" uid="uid://ccxljq4722nd4" path="res://data/game_systems/Player.tscn" id="1_glpvp"]
-[ext_resource type="Script" path="res://data/game_systems/utils/uuid.gd" id="2_elyfw"]
-[ext_resource type="Script" path="res://data/game_systems/items/item.gd" id="3_0v2u6"]
 
 [sub_resource type="StandardMaterial3D" id="StandardMaterial3D_0emcc"]
 albedo_color = Color(0.309804, 0.658824, 0, 1)
@@ -24,18 +21,15 @@ points = PackedVector3Array(2, 2, 2, 2, 2, -2, -2, 2, 2, 2, -2, 2, 2, -2, -2, -2
 left_to_right = 1.0
 size = Vector3(8, 4, 4)
 
-[sub_resource type="ConvexPolygonShape3D" id="ConvexPolygonShape3D_yohkc"]
+[sub_resource type="ConvexPolygonShape3D" id="ConvexPolygonShape3D_begib"]
 points = PackedVector3Array(4, 2, 2, 4, 2, -2, -4, -2, 2, 4, -2, 2, 4, -2, -2, -4, -2, -2)
 
-[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_rof3n"]
-transparency = 1
-albedo_color = Color(0.290196, 1, 1, 0.533333)
+[sub_resource type="PrismMesh" id="PrismMesh_h430c"]
+left_to_right = 1.0
+size = Vector3(8, 2, 4)
 
-[sub_resource type="BoxMesh" id="BoxMesh_y6huh"]
-size = Vector3(12, 4, 12)
-
-[sub_resource type="ConvexPolygonShape3D" id="ConvexPolygonShape3D_prtwl"]
-points = PackedVector3Array(-6, -2, -6, -6, 2, -6, 6, -2, -6, -6, -2, 6, -6, 2, 6, 6, 2, -6, 6, -2, 6, 6, 2, 6)
+[sub_resource type="ConvexPolygonShape3D" id="ConvexPolygonShape3D_qaocb"]
+points = PackedVector3Array(-4, -1, -2, -4, -1, 2, 4, 1, -2, 4, -1, -2, 4, -1, 2, 4, 1, 2)
 
 [sub_resource type="BoxMesh" id="BoxMesh_xelk3"]
 size = Vector3(2, 5, 2)
@@ -48,27 +42,6 @@ size = Vector3(10, 2, 2)
 
 [sub_resource type="ConvexPolygonShape3D" id="ConvexPolygonShape3D_74nt7"]
 points = PackedVector3Array(5, 1, 1, 5, 1, -1, -5, 1, 1, 5, -1, 1, 5, -1, -1, -5, 1, -1, -5, -1, 1, -5, -1, -1)
-
-[sub_resource type="CompressedTexture2D" id="CompressedTexture2D_4n1t4"]
-load_path = "res://.godot/imported/test.png-dde431d70706e994304ae94634f2a17d.ctex"
-
-[sub_resource type="Resource" id="Resource_kgf16"]
-script = ExtResource("2_elyfw")
-myUUID_stringified = "7679e08b-58a6-4eeb-9a48-95bf6fc967a4"
-
-[sub_resource type="Resource" id="Resource_6mqhe"]
-resource_local_to_scene = true
-script = ExtResource("3_0v2u6")
-gen_UUID = true
-item_id = SubResource("Resource_kgf16")
-item_name = "Test"
-inventory_icon = SubResource("CompressedTexture2D_4n1t4")
-item_type = Array[int]([6])
-item_weight = 0.1
-computed_item_weight = 0.1
-bModifiable = true
-bStackable = false
-item_count = 1
 
 [sub_resource type="ProceduralSkyMaterial" id="ProceduralSkyMaterial_haern"]
 
@@ -317,28 +290,23 @@ mesh = SubResource("BoxMesh_ggo7v")
 [node name="CollisionShape3D" type="CollisionShape3D" parent="map/pool_wall16"]
 shape = SubResource("ConvexPolygonShape3D_tfo0t")
 
-[node name="pool_ramp" type="StaticBody3D" parent="map"]
+[node name="ramp" type="StaticBody3D" parent="map"]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 2, -2, 16)
 
-[node name="MeshInstance3D" type="MeshInstance3D" parent="map/pool_ramp"]
+[node name="MeshInstance3D" type="MeshInstance3D" parent="map/ramp"]
 mesh = SubResource("PrismMesh_64feu")
 
-[node name="CollisionShape3D" type="CollisionShape3D" parent="map/pool_ramp"]
-shape = SubResource("ConvexPolygonShape3D_yohkc")
+[node name="CollisionShape3D" type="CollisionShape3D" parent="map/ramp"]
+shape = SubResource("ConvexPolygonShape3D_begib")
 
-[node name="water" type="Area3D" parent="map"]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -2, 20)
-collision_layer = 2
-collision_mask = 2
+[node name="ramp2" type="StaticBody3D" parent="map"]
+transform = Transform3D(-4.37114e-08, 0, 1, 0, 1, 0, -1, 0, -4.37114e-08, 24, 1, 5)
 
-[node name="MeshInstance3D" type="MeshInstance3D" parent="map/water"]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -1, 0)
-material_override = SubResource("StandardMaterial3D_rof3n")
-mesh = SubResource("BoxMesh_y6huh")
+[node name="MeshInstance3D" type="MeshInstance3D" parent="map/ramp2"]
+mesh = SubResource("PrismMesh_h430c")
 
-[node name="CollisionShape3D" type="CollisionShape3D" parent="map/water"]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -1, 0)
-shape = SubResource("ConvexPolygonShape3D_prtwl")
+[node name="CollisionShape3D" type="CollisionShape3D" parent="map/ramp2"]
+shape = SubResource("ConvexPolygonShape3D_qaocb")
 
 [node name="occluder_obstacle" type="StaticBody3D" parent="map"]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 15, 2.5, 0)
@@ -357,10 +325,6 @@ mesh = SubResource("BoxMesh_a62nf")
 
 [node name="CollisionShape3D" type="CollisionShape3D" parent="map/climb_obstacle"]
 shape = SubResource("ConvexPolygonShape3D_74nt7")
-
-[node name="test_item_prefab" parent="map" instance=ExtResource("1_dku2d")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 15, 0.25, 3)
-item = SubResource("Resource_6mqhe")
 
 [node name="Player" parent="." instance=ExtResource("1_glpvp")]
 transform = Transform3D(-1, 0, -8.74228e-08, 0, 1, 0, 8.74228e-08, 0, -1, 0, 0, 0)
